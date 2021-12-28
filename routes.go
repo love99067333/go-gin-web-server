@@ -26,7 +26,8 @@ func rateLimit(c *gin.Context) {
 	}
 }
 
-func index(c *gin.Context) {
+func index(w http.ResponseWriter, c *gin.Context) {
+	w.WriteHeader(200) // pressure test
 	c.Redirect(http.StatusMovedPermanently, "/room/hn")
 }
 
