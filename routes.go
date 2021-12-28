@@ -27,7 +27,13 @@ func rateLimit(c *gin.Context) {
 }
 
 func index(w http.ResponseWriter, c *gin.Context) {
-	w.WriteHeader(200) // pressure test
+	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "application/json")
+	resp := make(map[string]string)
+	resp["message"] = "Status OK"
+	jsonResp, err := json.Marshal(resp)
+	w.Write(jsonResp)
+	return
 	c.Redirect(http.StatusMovedPermanently, "/room/hn")
 }
 
