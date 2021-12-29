@@ -26,14 +26,19 @@ func rateLimit(c *gin.Context) {
 	}
 }
 
+
 func index(w http.ResponseWriter, c *gin.Context) {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "application/json")
-	resp := make(map[string]string)
-	resp["message"] = "Status OK"
-	w.Write(jsonResp)
-	return
-	c.Redirect(http.StatusMovedPermanently, "/room/hn")
+	// w.WriteHeader(http.StatusOK)
+	// w.Header().Set("Content-Type", "application/json")
+	// resp := make(map[string]string)
+	// resp["message"] = "Status OK"
+	// w.Write(jsonResp)
+	// return
+	// c.Redirect(http.StatusMovedPermanently, "/room/hn")
+
+	c.String(http.StatusOK, "hello world")
+	// c.Redirect(http.StatusMovedPermanently, "/room/hn")
+
 }
 
 func roomGET(c *gin.Context) {
@@ -59,6 +64,7 @@ func roomPOST(c *gin.Context) {
 	message := c.PostForm("message")
 	message = strings.TrimSpace(message)
 
+	fmt.Println("send message failed")
 	validMessage := len(message) > 1 && len(message) < 200
 	validNick := len(nick) > 1 && len(nick) < 14
 	if !validMessage || !validNick {

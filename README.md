@@ -9,3 +9,10 @@ The sample app is up at https://go-gin.onrender.com.
 ## Deployment
 
 See the guide at https://render.com/docs/deploy-go-gin.
+
+
+Build Command	go build -tags netgo -ldflags '-s -w' -o app
+Start Command	./app
+
+Pressure Testing(By k6)
+k6 run test.js
